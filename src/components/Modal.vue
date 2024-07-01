@@ -1,19 +1,37 @@
 <template>
-    <div class="backdrop">
-        <div class="modal">
-            <p>modal content</p>
-            <h1>Modal Title</h1>
+    <div class="backdrop"  @click.self="hide">
+        <div class="modal" :class="{sale: theme==='sale'}">
+            <h1>{{header}}</h1>
+            <p>{{text}}</p>
+            <button @click.right="hide">hide modal</button>
+          
         </div>
     </div>
 </template>
 
-<style scoped>
+<script>
+
+export default {
+    props: ['header','text','theme'],
+    methods:{
+        hide(){
+           
+            this.$emit('close');
+        }
+    }
+    
+}
+</script>
+
+
+<style >
 .modal{
     width: 400px;
     padding: 20px;
     margin: 100px auto;
     background: white;
     border-radius: 10px;
+    
 }
 .backdrop{
     top: 0;
